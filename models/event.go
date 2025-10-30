@@ -24,7 +24,6 @@ func (event Event) Save() error {
 	VALUES (?, ?, ?, ?, ?)`
 
 	stmt, err := db.DB.Prepare(query)
-
 	if err != nil {
 		return err
 	}
@@ -76,4 +75,34 @@ func GetEventById(id int64) (*Event, error) {
 	}
 
 	return &event, nil
+}
+
+func (event Event) Update() error {
+	query := `
+	UPDATE events
+	SET name = ?, description = ?, location = ?, dateTime = ?
+	WHERE id = ?
+	`
+	// The DB prepare is for memory efficiey purposes. Doesn't need to be used.
+	stmt, err := db.DB.Prepare(query)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(event.Name, event.Description, event.Location, event.DateTime, event.ID)
+	return err
+}
+
+func (event Event) Delete() error {
+	query := `DELETE FROM events WHERE id = ?`
+	// The DB prepare is for memory efficiey purposes. Doesn't need to be used.
+	stmt, err := db.DB.Prepare(query)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(event.ID)
+	return err
 }
