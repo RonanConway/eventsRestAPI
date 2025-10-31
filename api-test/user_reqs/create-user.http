@@ -5,3 +5,36 @@ Content-Type: application/json
     "email": "roger.rabbit2025@gmail.com",
     "password": "thisshouldbeencrypted"
 }
+
+
+###
+
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+    "email": "test1@gmail.com",
+    "password": "test1"
+}
+
+
+###
+
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+    "email": "test2@gmail.com",
+    "password": "test2"
+}
+
+
+###
+
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+    "email": "test3@gmail.com",
+    "password": "test3"
+}

@@ -51,7 +51,7 @@ func (user User) Save() error {
 // password stored in the DB and see if they match. Must
 // has the password passed in the login and compare against the hashed
 // DB password in order to make the comparison.
-func (user User) ValidateCredentials() error {
+func (user *User) ValidateCredentials() error {
 	query := "SELECT id, password FROM users WHERE email = ?"
 	row := db.DB.QueryRow(query, user.Email)
 
