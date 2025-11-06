@@ -1,10 +1,10 @@
 POST http://localhost:8080/events
 content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc2MTg0NTgyOCwidXNlcklkIjoxfQ.PliWXLKA7U4lUdV7hS6qbMXh803VSzK30fMmA48Wq98
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImV4cCI6MTc2MTkzNjQ3NiwidXNlcklkIjoxfQ.-ibE0uTVHOwsZXX6mCRjN1fGi2SuAt2YXyagPPPYXUo
 
 {
-    "name": "Test Event 1",
-    "description": "A test event 1",
-    "location": "A test location 1",
+    "name": "Belfast Gophers",
+    "description": "Golang Meetup",
+    "location": "Belfast",
     "dateTime": "2025-10-30T15:15:00.000Z"
 }

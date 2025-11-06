@@ -13,4 +13,8 @@ func main() {
 	routes.RegisterRoutes(server)
 	server.Run(":8080") //localhost:8080
 
+	//TODO, finish client
+	// Client code
+	// client := client.NewClient("http://localhost:8080")
+
 }

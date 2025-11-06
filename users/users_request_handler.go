@@ -1,4 +1,4 @@
-package routes
+package users
 
 import (
 	"net/http"
@@ -8,10 +8,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var userService UserService = userServiceImpl{}
+
 // User need to enter the email and password they signed up with or get rejected
 // with invalid creds message. The password is hashed so a call out to Validate the
 // credentials is required.
-func login(context *gin.Context) {
+func Login(context *gin.Context) {
 	var user models.User
 
 	err := context.ShouldBindJSON(&user)
@@ -21,7 +23,7 @@ func login(context *gin.Context) {
 		return
 	}
 
-	err = user.ValidateCredentials()
+	err = userService.ValidateCredentials(&user)
 	if err != nil {
 		context.JSON(http.StatusUnauthorized, gin.H{"message": "Could not authenticate user"})
 		return
@@ -37,7 +39,7 @@ func login(context *gin.Context) {
 
 }
 
-func signup(context *gin.Context) {
+func Signup(context *gin.Context) {
 	var user models.User
 
 	// user should be set by binding the incoming request
@@ -49,7 +51,7 @@ func signup(context *gin.Context) {
 		return
 	}
 
-	err = user.Save()
+	err = userService.Save(&user)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not save user to database!"})
 		return
@@ -60,8 +62,8 @@ func signup(context *gin.Context) {
 
 }
 
-func getUsers(context *gin.Context) {
-	users, err := models.GetAllUsers()
+func GetUsers(context *gin.Context) {
+	users, err := userService.GetAllUsers()
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch users, try again later."})
 		return
